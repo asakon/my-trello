@@ -5,7 +5,9 @@
         </header>
         <main>
             <p class="info-line">タスク合計： {{ totalCardCount }}</p>
-            <draggable :list="lists" class="list-index">
+            <draggable :list="lists" 
+                        @end="movingList"
+                        class="list-index">
                 <list v-for="(item, index) in lists"
                     :key="item.id"
                     :title="item.title"
@@ -44,6 +46,9 @@ export default {
         movingCard: function() {
             this.$store.dispatch('updateList', { lists: this.lists })
         },
+        movingList: function() {
+            this.$store.dispatch('updateList', { lists: this.lists })
+        }
     }
 }
 </script>
